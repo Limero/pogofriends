@@ -15,7 +15,7 @@ r = s.get('https://reddit.com/r/'+subReddit+'/comments/'+redditThread+'.json')
 body = r.text
 
 regex = r'([0-9]{4}\s[0-9]{4}\s[0-9]{4})'
-friendCodes = re.findall(regex, body)
+friendCodes = set(re.findall(regex, body))
 print("Found", len(friendCodes), "friendcodes")
 
 jsConst = 'const friendCodes = ['
