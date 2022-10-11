@@ -1,3 +1,7 @@
+body {
+    touch-action: pan-x pan-y;
+}
+
 .content {
     text-align: center;
     font-size: 50px;
