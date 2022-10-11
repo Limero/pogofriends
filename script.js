@@ -1,19 +1,14 @@
-let index = -1
-updateFriendCode()
+let index = 0
 
-window.addEventListener('focus', function (event) {
-    updateFriendCode()
-})
-
+window.addEventListener('focus', updateFriendCode)
 document.getElementById('next-code').addEventListener('click', updateFriendCode)
 
 function updateFriendCode() {
-    index++
     let friendCode = friendCodes[index]
-    document.getElementById('friend-code').innerHTML = friendCode
-    putInClipboard(friendCode)
-}
-
-function putInClipboard(s) {
-    navigator.clipboard.writeText(s)
+    navigator.clipboard.writeText(friendCode).then(
+        () => {
+            document.getElementById('friend-code').innerHTML = friendCode
+            index++
+        },
+    )
 }
