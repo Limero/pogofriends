@@ -27,6 +27,27 @@ func getHttp(url string) string {
 	return body.String()
 }
 
+func removeDuplicates(originals []string) []string {
+	var uniques []string
+
+	for _, s := range originals {
+		isUnique := true
+
+		for _, unique := range uniques {
+			if s == unique {
+				isUnique = false
+				break
+			}
+		}
+
+		if isUnique {
+			uniques = append(uniques, s)
+		}
+	}
+
+	return uniques
+}
+
 func writeToFile(content, path string) {
 	textfile, err := os.Create(path)
 	panicOnError(err)
@@ -50,6 +71,7 @@ func main() {
 
 	regex := regexp.MustCompile(`([0-9]{4}\s[0-9]{4}\s[0-9]{4})`)
 	friendCodes := regex.FindAllString(page, -1)
+	friendCodes = removeDuplicates(friendCodes)
 	fmt.Println("Found", len(friendCodes), "friendcodes")
 
 	lastUpdatedConst := fmt.Sprintf("const lastUpdated = %q", time.Now().UTC().String())
