@@ -12,3 +12,5 @@ function updateFriendCode() {
         },
     )
 }
+
+document.getElementById('last-updated').innerHTML = 'Last updated: ' + lastUpdated

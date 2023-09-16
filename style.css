@@ -3,10 +3,15 @@ body {
 }
 
 .content {
-    text-align: center;
-    font-size: 50px;
+  text-align: center;
+  font-size: 50px;
 }
 
 .next-code {
-    font-size: 20px;
+  font-size: 20px;
+}
+
+.last-updated {
+  margin-top: 50px;
+  font-size: 12px;
 }

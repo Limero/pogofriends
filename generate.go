@@ -7,6 +7,7 @@ import (
 	"os"
 	"regexp"
 	"strings"
+	"time"
 )
 
 func getHttp(url string) string {
@@ -51,7 +52,8 @@ func main() {
 	friendCodes := regex.FindAllString(page, -1)
 	fmt.Println("Found", len(friendCodes), "friendcodes")
 
+	lastUpdatedConst := fmt.Sprintf("const lastUpdated = %q", time.Now().UTC().String())
 	jsConst := "const friendCodes = [\"" + strings.Join(friendCodes, "\", \"") + "\"]"
 
-	writeToFile(jsConst, "friendcodes.js")
+	writeToFile(lastUpdatedConst+"\n"+jsConst, "friendcodes.js")
 }
