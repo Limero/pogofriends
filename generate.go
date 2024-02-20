@@ -65,7 +65,7 @@ func panicOnError(err error) {
 
 func main() {
 	subReddit := "PokemonGoFriends"
-	redditThread := "13ph1zs"
+	redditThread := "19f9hne"
 
 	page := getHttp("https://reddit.com/r/" + subReddit + "/comments/" + redditThread + ".json")
 
