@@ -4,13 +4,12 @@ body {
 
 .content {
   text-align: center;
-  font-size: 50px;
+  font-size: 40px;
 }
 
 .next-code {
+  margin-top: 10px;
   font-size: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
 }
 
 .info {
