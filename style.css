@@ -21,3 +21,10 @@ body {
   margin-top: 50px;
   font-size: 12px;
 }
+
+.github {
+  height: 50px;
+  width: 50px;
+  filter:
+  drop-shadow(1px 1px 1px #3e68ff);
+}
