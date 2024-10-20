@@ -27,6 +27,18 @@ func getHttp(url string) string {
 	return body.String()
 }
 
+func formatFriendCodes(friendCodes []string) []string {
+	formattedFriendCodes := make([]string, len(friendCodes))
+	for i, c := range friendCodes {
+		if len(c) == 12 {
+			formattedFriendCodes[i] = c[:4] + " " + c[4:8] + " " + c[8:12]
+			continue
+		}
+		formattedFriendCodes[i] = c
+	}
+	return formattedFriendCodes
+}
+
 func removeDuplicates(originals []string) []string {
 	var uniques []string
 
@@ -63,14 +75,20 @@ func panicOnError(err error) {
 	}
 }
 
+var regex = regexp.MustCompile(`([0-9]{4}\s[0-9]{4}\s[0-9]{4}|[0-9]{12})`)
+
+func findFriendCodes(content string) []string {
+	return regex.FindAllString(content, -1)
+}
+
 func main() {
 	subReddit := "PokemonGoFriends"
 	redditThread := "19f9hne"
 
 	page := getHttp("https://reddit.com/r/" + subReddit + "/comments/" + redditThread + ".json")
 
-	regex := regexp.MustCompile(`([0-9]{4}\s[0-9]{4}\s[0-9]{4})`)
-	friendCodes := regex.FindAllString(page, -1)
+	friendCodes := findFriendCodes(page)
+	friendCodes = formatFriendCodes(friendCodes)
 	friendCodes = removeDuplicates(friendCodes)
 	fmt.Println("Found", len(friendCodes), "friendcodes")
 
